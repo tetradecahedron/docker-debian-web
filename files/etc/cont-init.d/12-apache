@@ -1,0 +1,27 @@
+#!/usr/bin/with-contenv bash
+
+# make our folders
+mkdir -p \
+	/var/log/apache2
+
+# enable modules
+a2enmod \
+	rewrite \
+	http2 \
+	headers
+
+# remove uneccesary files
+rm /etc/apache2/conf-enabled/other-vhosts-access-log.conf
+
+# copy configs
+cp /defaults/apache2.conf /etc/apache2/apache2.conf
+cp /defaults/000-default.conf /etc/apache2/sites-available/000-default.conf
+if [ ! -f /var/www/html/index.php ]; then
+  cp /defaults/index.php /var/www/html/index.php
+fi
+
+# permissions
+chown -R abc:abc \
+	/var/www/html \
+	/var/log/apache2 \
+	/var/run/apache2 

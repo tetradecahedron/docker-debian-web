@@ -1,0 +1,6 @@
+#!/bin/sh
+
+#while true; do
+  #php7 -f /app/cliupdate.php # Command
+  #sleep 15m # Time between execution
+#done
